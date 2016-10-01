@@ -1,0 +1,404 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/bike_selection_sprites.o
+LOAD build/bike_sprites.o
+LOAD build/digits.o
+LOAD build/game.o
+LOAD build/gpio.o
+LOAD build/green_bike_sprites.o
+LOAD build/interrupts.o
+LOAD build/jtag.o
+LOAD build/mailboxes.o
+LOAD build/main.o
+LOAD build/map_sprites.o
+LOAD build/menu_sprites.o
+LOAD build/pink_bike_sprites.o
+LOAD build/snes.o
+LOAD build/sprites.o
+LOAD build/utils.o
+LOAD build/video.o
+LOAD build/wall_sprites.o
+LOAD uart.o
+LOAD gpio.o
+
+.init           0x00008000        0x4
+ *(.init)
+ .init          0x00008000        0x4 build/main.o
+                0x00008000                _start
+
+.data           0x00009080     0x11f8
+ *(.data)
+ .data          0x00009080        0x0 build/bike_selection_sprites.o
+ .data          0x00009080        0x0 build/bike_sprites.o
+ .data          0x00009080        0x0 build/digits.o
+ .data          0x00009080      0x954 build/game.o
+                0x000099c0                lives
+                0x000099c4                score
+ .data          0x000099d4        0x0 build/gpio.o
+ .data          0x000099d4        0x0 build/green_bike_sprites.o
+ .data          0x000099d4       0x40 build/interrupts.o
+                0x000099d4                ISRTable
+ .data          0x00009a14        0x0 build/jtag.o
+ .data          0x00009a14        0x0 build/mailboxes.o
+ .data          0x00009a14        0x8 build/main.o
+ .data          0x00009a1c        0x0 build/map_sprites.o
+ .data          0x00009a1c        0x0 build/menu_sprites.o
+ .data          0x00009a1c        0x0 build/pink_bike_sprites.o
+ .data          0x00009a1c        0x0 build/snes.o
+ .data          0x00009a1c        0x0 build/sprites.o
+ .data          0x00009a1c        0x0 build/utils.o
+ .data          0x00009a1c      0x85c build/video.o
+                0x0000a23c                pictureTemp
+ .data          0x0000a278        0x0 build/wall_sprites.o
+ .data          0x0000a278        0x0 uart.o
+ .data          0x0000a278        0x0 gpio.o
+ *.c.o(*)
+
+.igot.plt       0x0000a278        0x0
+ .igot.plt      0x00000000        0x0 build/game.o
+
+.text           0x0000a280    0xae8dc
+ *.c.o(.text)
+ *(.text)
+ .text          0x0000a280    0x18000 build/bike_selection_sprites.o
+                0x0000a280                pink_selection
+                0x00012280                green_selection
+                0x0001a280                orange_selection
+ .text          0x00022280     0xb800 build/bike_sprites.o
+                0x00022280                orange_life
+                0x00022a80                trail_up_right_end
+                0x00023280                trail_up_left_end
+                0x00023a80                trail_right_up_end
+                0x00024280                trail_right_down_end
+                0x00024a80                trail_left_up_end
+                0x00025280                trail_left_down_end
+                0x00025a80                trail_down_right_end
+                0x00026280                trail_down_left_end
+                0x00026a80                trail_right_end
+                0x00027280                trail_left_end
+                0x00027a80                trail_up_end
+                0x00028280                trail_down_end
+                0x00028a80                trail_right_down
+                0x00029280                trail_right_up
+                0x00029a80                trail_up_right
+                0x0002a280                trail_down_right
+                0x0002aa80                trail_vertical
+                0x0002b280                trail_horizontal
+                0x0002ba80                bike_up
+                0x0002c280                bike_left
+                0x0002ca80                bike_right
+                0x0002d280                bike_down
+ .text          0x0002da80     0x5000 build/digits.o
+                0x0002da80                text_0
+                0x0002e280                text_1
+                0x0002ea80                text_2
+                0x0002f280                text_3
+                0x0002fa80                text_4
+                0x00030280                text_5
+                0x00030a80                text_6
+                0x00031280                text_7
+                0x00031a80                text_8
+                0x00032280                text_9
+ .text          0x00032a80      0xc1c build/game.o
+                0x00032a80                initGame
+                0x00032ba8                startGame
+                0x00032ccc                resetSnake
+                0x00032d80                drawMap
+                0x00033098                moveSnake
+                0x000332b4                updateLives
+                0x00033354                spawnValuePack
+                0x00033434                drawItem
+                0x000334a8                redrawArea
+                0x00033504                fillScreenWithItem
+                0x00033548                drawBikeColor
+                0x00033598                drawMapLabel
+                0x000335f0                changeMap
+                0x00033628                changeBikeColor
+ .text          0x0003369c       0xfc build/gpio.o
+                0x0003369c                initGPIO
+                0x000336e8                readGPIO
+                0x00033728                writeGPIO
+ .text          0x00033798     0xb800 build/green_bike_sprites.o
+                0x00033798                green_life
+                0x00033f98                green_trail_up_right_end
+                0x00034798                green_trail_up_left_end
+                0x00034f98                green_trail_up_end
+                0x00035798                green_trail_right_up_end
+                0x00035f98                green_trail_right_end
+                0x00036798                green_trail_right_down_end
+                0x00036f98                green_trail_left_up_end
+                0x00037798                green_trail_left_end
+                0x00037f98                green_trail_left_down_end
+                0x00038798                green_trail_down_right_end
+                0x00038f98                green_trail_down_left_end
+                0x00039798                green_trail_down_end
+                0x00039f98                green_trail_up_right
+                0x0003a798                green_trail_right_up
+                0x0003af98                green_trail_right_down
+                0x0003b798                green_trail_down_right
+                0x0003bf98                green_trail_vertical
+                0x0003c798                green_trail_horizontal
+                0x0003cf98                green_bike_right
+                0x0003d798                green_bike_left
+                0x0003df98                green_bike_up
+                0x0003e798                green_bike_down
+ .text          0x0003ef98      0x120 build/interrupts.o
+                0x0003ef98                initTimer
+                0x0003efc8                enableIRQ
+                0x0003efe0                disableIRQ
+                0x0003eff8                sysIRQ_enable
+                0x0003f010                sysIRQ_disable
+                0x0003f068                initTable
+ .text          0x0003f0b8       0x8c build/jtag.o
+                0x0003f0b8                EnableJTAG
+ .text          0x0003f144       0x44 build/mailboxes.o
+                0x0003f144                readMailbox
+                0x0003f16c                writeMailbox
+ .text          0x0003f188      0x684 build/main.o
+ .text          0x0003f80c    0x18000 build/map_sprites.o
+                0x0003f80c                hell_strip_map
+                0x0004780c                bug_map
+                0x0004f80c                baby_map
+ .text          0x0005780c    0x1a000 build/menu_sprites.o
+                0x0005780c                press_any_key
+                0x0006080c                you_lose
+                0x0006980c                you_win
+ .text          0x0007180c     0xb800 build/pink_bike_sprites.o
+                0x0007180c                pink_life
+                0x0007200c                pink_trail_up_end
+                0x0007280c                pink_trail_right_end
+                0x0007300c                pink_trail_left_end
+                0x0007380c                pink_trail_up_right_end
+                0x0007400c                pink_trail_up_left_end
+                0x0007480c                pink_trail_right_up_end
+                0x0007500c                pink_trail_right_down_end
+                0x0007580c                pink_trail_left_up_end
+                0x0007600c                pink_trail_left_down_end
+                0x0007680c                pink_trail_down_right_end
+                0x0007700c                pink_trail_down_left_end
+                0x0007780c                pink_trail_down_end
+                0x0007800c                pink_trail_vertical
+                0x0007880c                pink_trail_up_right
+                0x0007900c                pink_trail_right_up
+                0x0007980c                pink_trail_right_down
+                0x0007a00c                pink_trail_horizontal
+                0x0007a80c                pink_trail_down_right
+                0x0007b00c                pink_bike_right
+                0x0007b80c                pink_bike_left
+                0x0007c00c                pink_bike_up
+                0x0007c80c                pink_bike_down
+ .text          0x0007d00c       0xe4 build/snes.o
+                0x0007d00c                InitSNES
+                0x0007d03c                readSNES
+ .text          0x0007d0f0    0x38a00 build/sprites.o
+                0x0007d0f0                cpsc_359_text
+                0x000850f0                value_pack
+                0x000858f0                creators_text
+                0x0008f0f0                main_menu
+                0x000950f0                title
+                0x000a6af0                menu_pointer
+                0x000a72f0                pause_menu
+                0x000ad2f0                lives_text
+                0x000afaf0                score_text
+                0x000b22f0                text_background
+                0x000b2af0                disk
+                0x000b32f0                floor
+                0x000b3af0                newWall
+                0x000b42f0                nyan
+                0x000b4af0                wallTest
+                0x000b52f0                wall
+ .text          0x000b5af0      0x2e8 build/utils.o
+                0x000b5af0                udiv
+                0x000b5bc0                wait
+                0x000b5bdc                atoi
+                0x000b5c78                itoa
+                0x000b5d1c                randSeed
+                0x000b5d58                rand
+                0x000b5da4                rand32
+ *fill*         0x000b5dd8        0x8 3f3f3f3f
+ .text          0x000b5de0      0x2f0 build/video.o
+                0x000b5de0                initFrameBuffer
+                0x000b5e30                coordToArray
+                0x000b5e44                drawPixel
+                0x000b5e80                drawHorizonalLine
+                0x000b5ebc                movePixel
+                0x000b5efc                clearPixel
+                0x000b5f10                getPixel
+                0x000b5f48                drawPicture
+                0x000b5fa0                stampPicture
+                0x000b6024                drawInteger
+                0x000b6090                FrameBufferInfo
+ .text          0x000b60d0     0x2800 build/wall_sprites.o
+                0x000b60d0                blue_glowing_box
+                0x000b68d0                green_glowing_box
+                0x000b70d0                white_glowing_box
+                0x000b78d0                green_circuit
+                0x000b80d0                white_circuit
+ .text          0x000b88d0      0x1b4 uart.o
+                0x000b88d0                InitUART
+                0x000b8990                PutCharUART
+                0x000b89ac                GetCharUART
+                0x000b89c8                WriteStringUART
+                0x000b89f4                ReadLineUART
+ .text          0x000b8a84       0xd8 gpio.o
+                0x000b8a84                GetGpioAddress
+                0x000b8a8c                SetGpioFunction
+                0x000b8ad8                SetGpio
+                0x000b8b14                GetGpio
+OUTPUT(build/output.elf elf32-littlearm)
+
+.glue_7         0x000b8b5c        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000b8b5c        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000b8b5c        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000b8b5c        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x000b8b5c        0x0
+ .iplt          0x00000000        0x0 build/game.o
+
+.rel.dyn        0x000b8b5c        0x0
+ .rel.iplt      0x00000000        0x0 build/game.o
+
+.bss            0x000b8b5c        0x0
+ .bss           0x000b8b5c        0x0 build/bike_selection_sprites.o
+ .bss           0x000b8b5c        0x0 build/bike_sprites.o
+ .bss           0x000b8b5c        0x0 build/digits.o
+ .bss           0x000b8b5c        0x0 build/game.o
+ .bss           0x000b8b5c        0x0 build/gpio.o
+ .bss           0x000b8b5c        0x0 build/green_bike_sprites.o
+ .bss           0x000b8b5c        0x0 build/interrupts.o
+ .bss           0x000b8b5c        0x0 build/jtag.o
+ .bss           0x000b8b5c        0x0 build/mailboxes.o
+ .bss           0x000b8b5c        0x0 build/main.o
+ .bss           0x000b8b5c        0x0 build/map_sprites.o
+ .bss           0x000b8b5c        0x0 build/menu_sprites.o
+ .bss           0x000b8b5c        0x0 build/pink_bike_sprites.o
+ .bss           0x000b8b5c        0x0 build/snes.o
+ .bss           0x000b8b5c        0x0 build/sprites.o
+ .bss           0x000b8b5c        0x0 build/utils.o
+ .bss           0x000b8b5c        0x0 build/video.o
+ .bss           0x000b8b5c        0x0 build/wall_sprites.o
+ .bss           0x000b8b5c        0x0 uart.o
+ .bss           0x000b8b5c        0x0 gpio.o
+
+.ARM.attributes
+                0x00000000       0x26
+ .ARM.attributes
+                0x00000000       0x26 build/bike_selection_sprites.o
+ .ARM.attributes
+                0x00000026       0x26 build/bike_sprites.o
+ .ARM.attributes
+                0x0000004c       0x26 build/digits.o
+ .ARM.attributes
+                0x00000072       0x26 build/game.o
+ .ARM.attributes
+                0x00000098       0x26 build/gpio.o
+ .ARM.attributes
+                0x000000be       0x26 build/green_bike_sprites.o
+ .ARM.attributes
+                0x000000e4       0x26 build/interrupts.o
+ .ARM.attributes
+                0x0000010a       0x26 build/jtag.o
+ .ARM.attributes
+                0x00000130       0x26 build/mailboxes.o
+ .ARM.attributes
+                0x00000156       0x26 build/main.o
+ .ARM.attributes
+                0x0000017c       0x26 build/map_sprites.o
+ .ARM.attributes
+                0x000001a2       0x26 build/menu_sprites.o
+ .ARM.attributes
+                0x000001c8       0x26 build/pink_bike_sprites.o
+ .ARM.attributes
+                0x000001ee       0x26 build/snes.o
+ .ARM.attributes
+                0x00000214       0x26 build/sprites.o
+ .ARM.attributes
+                0x0000023a       0x26 build/utils.o
+ .ARM.attributes
+                0x00000260       0x26 build/video.o
+ .ARM.attributes
+                0x00000286       0x26 build/wall_sprites.o
+ .ARM.attributes
+                0x000002ac       0x26 uart.o
+ .ARM.attributes
+                0x000002d2       0x26 gpio.o
+
+.debug_line     0x00000000      0xb13
+ .debug_line    0x00000000      0x374 build/game.o
+ .debug_line    0x00000374       0x82 build/gpio.o
+ .debug_line    0x000003f6       0xab build/interrupts.o
+ .debug_line    0x000004a1       0x61 build/jtag.o
+ .debug_line    0x00000502       0x54 build/mailboxes.o
+ .debug_line    0x00000556      0x20c build/main.o
+ .debug_line    0x00000762       0x75 build/snes.o
+ .debug_line    0x000007d7      0x101 build/utils.o
+ .debug_line    0x000008d8      0x10c build/video.o
+ .debug_line    0x000009e4       0xb6 uart.o
+ .debug_line    0x00000a9a       0x79 gpio.o
+
+.debug_info     0x00000000      0x3e2
+ .debug_info    0x00000000       0x57 build/game.o
+ .debug_info    0x00000057       0x57 build/gpio.o
+ .debug_info    0x000000ae       0x5d build/interrupts.o
+ .debug_info    0x0000010b       0x57 build/jtag.o
+ .debug_info    0x00000162       0x5c build/mailboxes.o
+ .debug_info    0x000001be       0x57 build/main.o
+ .debug_info    0x00000215       0x57 build/snes.o
+ .debug_info    0x0000026c       0x58 build/utils.o
+ .debug_info    0x000002c4       0x58 build/video.o
+ .debug_info    0x0000031c       0x63 uart.o
+ .debug_info    0x0000037f       0x63 gpio.o
+
+.debug_abbrev   0x00000000       0xd8
+ .debug_abbrev  0x00000000       0x14 build/game.o
+ .debug_abbrev  0x00000014       0x14 build/gpio.o
+ .debug_abbrev  0x00000028       0x12 build/interrupts.o
+ .debug_abbrev  0x0000003a       0x14 build/jtag.o
+ .debug_abbrev  0x0000004e       0x14 build/mailboxes.o
+ .debug_abbrev  0x00000062       0x12 build/main.o
+ .debug_abbrev  0x00000074       0x14 build/snes.o
+ .debug_abbrev  0x00000088       0x14 build/utils.o
+ .debug_abbrev  0x0000009c       0x14 build/video.o
+ .debug_abbrev  0x000000b0       0x14 uart.o
+ .debug_abbrev  0x000000c4       0x14 gpio.o
+
+.debug_aranges  0x00000000      0x170
+ .debug_aranges
+                0x00000000       0x20 build/game.o
+ .debug_aranges
+                0x00000020       0x20 build/gpio.o
+ .debug_aranges
+                0x00000040       0x28 build/interrupts.o
+ .debug_aranges
+                0x00000068       0x20 build/jtag.o
+ .debug_aranges
+                0x00000088       0x20 build/mailboxes.o
+ .debug_aranges
+                0x000000a8       0x28 build/main.o
+ .debug_aranges
+                0x000000d0       0x20 build/snes.o
+ .debug_aranges
+                0x000000f0       0x20 build/utils.o
+ .debug_aranges
+                0x00000110       0x20 build/video.o
+ .debug_aranges
+                0x00000130       0x20 uart.o
+ .debug_aranges
+                0x00000150       0x20 gpio.o
+
+.debug_ranges   0x00000000       0x40
+ .debug_ranges  0x00000000       0x20 build/interrupts.o
+ .debug_ranges  0x00000020       0x20 build/main.o
