@@ -4,7 +4,7 @@ A TRON inspired Snake Game programmed in ARM Assembly using
 
 Raspberry Pi Model B for CPSC 359 - Computing Machinery II.
 
-## Contributors:
+### Contributors:
 [Blake Mealey](github.com/blake-mealey)
 
 David Sepulveda
@@ -14,4 +14,4 @@ David Sepulveda
 
 
 
-Final Version: April 2016
+#### Final Version: April 2016
