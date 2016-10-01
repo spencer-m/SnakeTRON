@@ -1,7 +1,6 @@
 # SnakeTRON
 
-A TRON inspired Snake Game programmed in ARM Assembly using 
-
+A TRON inspired Snake Game programmed in ARM Assembly using the
 Raspberry Pi Model B for CPSC 359 - Computing Machinery II.
 
 ### Contributors:
